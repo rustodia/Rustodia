@@ -19,43 +19,62 @@ html, body {
   background-color: var(--dark);
   color: #fff;
   scroll-behavior: smooth;
+  text-align: center;
 }
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  background: rgba(0,0,0,0.95);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 30px;
+  background: rgba(0,0,0,0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
   border-bottom: 2px solid var(--orange);
-  z-index: 999;
+  z-index: 1000;
 }
-header img { height: 48px; }
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+header img {
+  height: 48px;
+  vertical-align: middle;
+}
 nav a {
   color: #fff;
   text-decoration: none;
-  margin: 0 10px;
   font-weight: 700;
   transition: color 0.3s;
 }
 nav a:hover { color: var(--orange); }
 section {
-  padding: 100px 20px 60px;
-  max-width: 1000px;
+  padding: 120px 20px 60px;
+  max-width: 900px;
   margin: auto;
 }
-h1, h2 { color: var(--orange); }
+h1, h2 { color: var(--orange); margin-bottom: 20px; }
 .card {
   background: var(--panel);
   padding: 20px;
   border-radius: 12px;
   margin-top: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  display: inline-block;
+  text-align: left;
 }
 .news-item {
-  display: flex; gap: 12px; margin-top: 15px;
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  align-items: center;
 }
 .news-item img {
-  width: 150px; height: 90px; object-fit: cover; border-radius: 8px;
+  width: 150px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 .small { color: var(--muted); font-size: 14px; }
 .map-img { width: 100%; border-radius: 12px; margin-top: 15px; }
@@ -66,14 +85,19 @@ footer {
   color: var(--muted);
 }
 a { color: var(--orange); }
+@media(max-width: 700px){
+  nav { flex-wrap: wrap; gap: 12px; }
+  .news-item { flex-direction: column; text-align: center; }
+}
 </style>
 </head>
 <body>
+
 <header>
-  <div><img src="logo.png" alt="Rustodia Logo"></div>
   <nav>
     <a href="#home">Home</a>
     <a href="#info">Info</a>
+    <img src="logo.png" alt="Rustodia Logo">
     <a href="#map">Map</a>
     <a href="#contacts">Contacts</a>
   </nav>
@@ -106,7 +130,7 @@ a { color: var(--orange); }
 
 <section id="contacts">
   <h2>Contacts</h2>
-  <div class="card small">
+  <div class="card small" style="text-align:center;">
     <p><strong>Email:</strong> <a href="mailto:rustodia@gmail.com">rustodia@gmail.com</a></p>
     <p><strong>Instagram:</strong> <a href="https://www.instagram.com/rustodia?igsh=dGR6bjdrbGt4NzZv&utm_source=qr" target="_blank">@rustodia</a></p>
     <p><strong>Discord:</strong> <a href="https://discord.gg/k4EhgQMV8t" target="_blank">Join our Discord</a></p>
@@ -114,7 +138,9 @@ a { color: var(--orange); }
 </section>
 
 <footer>
-  © Rustodia 2025 — <a href="https://discord.gg/k4EhgQMV8t" target="_blank">Discord</a> • <a href="https://www.instagram.com/rustodia" target="_blank">Instagram</a> • <a href="mailto:rustodia@gmail.com">Email</a>
+  © Rustodia 2025 — <a href="https://discord.gg/k4EhgQMV8t" target="_blank">Discord</a> • 
+  <a href="https://www.instagram.com/rustodia" target="_blank">Instagram</a> • 
+  <a href="mailto:rustodia@gmail.com">Email</a>
 </footer>
 
 <script>
