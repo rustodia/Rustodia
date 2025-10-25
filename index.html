@@ -1,185 +1,205 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Rustodia</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --orange: #ff6a00;
-  --dark: #000;
-  --panel: #0b0b0c;
-  --muted: #aaa;
-}
-html, body {
-  margin: 0; padding: 0;
-  font-family: 'Orbitron', sans-serif;
-  background-color: var(--dark);
-  color: #fff;
-  scroll-behavior: smooth;
-  text-align: center;
-}
-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  background: rgba(0,0,0,0.98);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  border-bottom: 2px solid var(--orange);
-  z-index: 1000;
-}
-header nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-header img {
-  height: 48px;
-  vertical-align: middle;
-}
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  transition: color 0.3s;
-}
-nav a:hover { color: var(--orange); }
-section {
-  padding: 120px 20px 60px;
-  max-width: 900px;
-  margin: auto;
-}
-h1, h2 { color: var(--orange); margin-bottom: 20px; }
-.card {
-  background: var(--panel);
-  padding: 20px;
-  border-radius: 12px;
-  margin-top: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  display: inline-block;
-  text-align: left;
-}
-.news-item {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-  align-items: center;
-}
-.news-item img {
-  width: 150px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.small { color: var(--muted); font-size: 14px; }
-.map-img { width: 100%; border-radius: 12px; margin-top: 15px; }
-footer {
-  text-align: center;
-  padding: 30px 10px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  color: var(--muted);
-}
-a { color: var(--orange); }
-@media(max-width: 700px){
-  nav { flex-wrap: wrap; gap: 12px; }
-  .news-item { flex-direction: column; text-align: center; }
-}
+  :root{
+    --orange:#ff6a00;
+    --dark:#000;
+    --panel:#0b0b0c;
+    --muted:#a6a6a6;
+    --max-width:1000px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;padding:0;background:var(--dark);color:#fff;font-family:'Orbitron',sans-serif;scroll-behavior:smooth}
+  /* Header */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    background:rgba(0,0,0,0.98);
+    border-bottom:2px solid var(--orange);
+    z-index:1000;
+  }
+  header .nav-wrap{
+    max-width:var(--max-width);
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:32px;
+    padding:10px 20px;
+  }
+  header nav{display:flex;align-items:center;gap:20px;flex:1;justify-content:center}
+  header nav a{color:#fff;text-decoration:none;font-weight:700;padding:6px 10px;border-radius:6px;transition:color .18s}
+  header nav a:hover{color:var(--orange)}
+  header .logo{display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  header .logo img{height:52px;display:block}
+  /* Page layout: sections centered */
+  main{padding-top:96px} /* leave space for fixed header */
+  section{
+    display:flex;
+    flex-direction:column;
+    align-items:center;      /* <-- centers the card horizontally */
+    padding:60px 16px;
+  }
+  section .section-inner{
+    width:100%;
+    max-width:var(--max-width);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+  }
+  h1,h2{color:var(--orange);margin:0}
+  /* Card */
+  .card{
+    width:100%;
+    max-width:900px;
+    background:var(--panel);
+    border-radius:12px;
+    padding:22px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.03);
+    text-align:left; /* keep inner content left-aligned for readability */
+  }
+  .card.center-text{text-align:center}
+  .news-item{display:flex;gap:14px;align-items:center;margin-top:14px}
+  .news-item img{width:140px;height:84px;object-fit:cover;border-radius:8px}
+  .small{color:var(--muted);font-size:14px;line-height:1.45}
+  .map-img{width:100%;height:auto;border-radius:10px;display:block}
+  footer{padding:28px 12px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.04)}
+  a{color:var(--orange)}
+  /* responsive */
+  @media(max-width:800px){
+    header .nav-wrap{gap:12px;padding:8px}
+    header nav{gap:10px}
+    .news-item{flex-direction:column;align-items:center}
+    .news-item img{width:100%;height:auto;max-width:280px}
+    .card{padding:16px}
+  }
 </style>
 </head>
 <body>
+  <header>
+    <div class="nav-wrap">
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#info">Info</a>
+      </nav>
 
-<header>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#info">Info</a>
-    <img src="logo.png" alt="Rustodia Logo">
-    <a href="#map">Map</a>
-    <a href="#contacts">Contacts</a>
-  </nav>
-</header>
+      <div class="logo">
+        <a href="#home"><img src="logo.png" alt="Rustodia logo"></a>
+      </div>
 
-<section id="home">
-  <h1>Welcome to Rustodia</h1>
-  <div class="card">
-    <h2>Latest News</h2>
-    <div id="news-list"></div>
-  </div>
-</section>
+      <nav aria-hidden="false" style="display:flex;align-items:center;gap:20px;">
+        <a href="#map">Map</a>
+        <a href="#contacts">Contacts</a>
+      </nav>
+    </div>
+  </header>
 
-<section id="info">
-  <h2>Server Info</h2>
-  <div class="card small">
-    <p><strong>Wipe Schedule:</strong> Map weekly - Fridays @ 2PM UK / 3PM CEST, or when force updates occur. BPs - Monthly @ Force.</p>
-    <p><strong>VIP:</strong> Rustodia Store</p>
-    <p><strong>Rules:</strong> Max team size: 2. No hacking / scripting. No intentional bug abuse. No EAC / FP banned alts. No ban evading. No racism.</p>
-    <p>Top performance. Active administrators. Seeds are carefully selected.</p>
-  </div>
-</section>
+  <main>
+    <!-- HOME -->
+    <section id="home" aria-labelledby="home-title">
+      <div class="section-inner">
+        <h1 id="home-title">Welcome to Rustodia</h1>
 
-<section id="map">
-  <h2>Current Map</h2>
-  <div class="card" style="text-align:center;">
-    <img id="map-image" src="" alt="Current Map" class="map-img">
-  </div>
-</section>
+        <div class="card" role="region" aria-label="Latest News">
+          <h2 style="margin-bottom:10px">Latest News</h2>
+          <div id="news-list" class="news-list">
+            <!-- news items injected by script -->
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="contacts">
-  <h2>Contacts</h2>
-  <div class="card small" style="text-align:center;">
-    <p><strong>Email:</strong> <a href="mailto:rustodia@gmail.com">rustodia@gmail.com</a></p>
-    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/rustodia?igsh=dGR6bjdrbGt4NzZv&utm_source=qr" target="_blank">@rustodia</a></p>
-    <p><strong>Discord:</strong> <a href="https://discord.gg/k4EhgQMV8t" target="_blank">Join our Discord</a></p>
-  </div>
-</section>
+    <!-- INFO -->
+    <section id="info" aria-labelledby="info-title">
+      <div class="section-inner">
+        <h2 id="info-title">Server Info</h2>
+        <div class="card">
+          <p class="small"><strong>Wipe Schedule:</strong> Map weekly - Fridays @ 2PM UK / 3PM CEST, or when force updates occur. BPs - Monthly @ Force.</p>
+          <p class="small"><strong>VIP:</strong> Rustodia Store</p>
+          <p class="small"><strong>Rules:</strong> Max team size: 2. No hacking / scripting. No intentional bug abuse. No EAC / FP banned alts. No ban evading. No racism.</p>
+          <p class="small">Top performance. Active administrators. Seeds are carefully selected.</p>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  © Rustodia 2025 — <a href="https://discord.gg/k4EhgQMV8t" target="_blank">Discord</a> • 
-  <a href="https://www.instagram.com/rustodia" target="_blank">Instagram</a> • 
-  <a href="mailto:rustodia@gmail.com">Email</a>
-</footer>
+    <!-- MAP -->
+    <section id="map" aria-labelledby="map-title">
+      <div class="section-inner">
+        <h2 id="map-title">Current Map</h2>
+        <div class="card center-text" style="max-width:920px">
+          <img id="map-image" class="map-img" src="" alt="Current map image">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" aria-labelledby="contacts-title">
+      <div class="section-inner">
+        <h2 id="contacts-title">Contacts</h2>
+        <div class="card small">
+          <p><strong>Email:</strong> <a href="mailto:rustodia@gmail.com">rustodia@gmail.com</a></p>
+          <p><strong>Instagram:</strong> <a href="https://www.instagram.com/rustodia?igsh=dGR6bjdrbGt4NzZv&utm_source=qr" target="_blank" rel="noopener">@rustodia</a></p>
+          <p><strong>Discord:</strong> <a href="https://discord.gg/k4EhgQMV8t" target="_blank" rel="noopener">Join our Discord</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © Rustodia 2025 — <a href="https://discord.gg/k4EhgQMV8t" target="_blank" rel="noopener">Discord</a> • <a href="https://www.instagram.com/rustodia" target="_blank" rel="noopener">Instagram</a> • <a href="mailto:rustodia@gmail.com">Email</a>
+  </footer>
 
 <script>
-// NEWS SECTION DATA
-const NEWS_DATA = [
-  {
-    title: "Welcome to Rustodia",
-    image: "logo.png",
-    caption: "Rustodia — Vanilla Solo/Duo server. New wipes every Friday. Join our Discord for updates."
-  },
-  {
-    title: "Upcoming Wipe",
-    image: "logo.png",
-    caption: "Weekly wipe on Friday @ 2PM UK / 3PM CEST. Prepare your base!"
+  // === NEWS DATA (edit only here) ===
+  const NEWS_DATA = [
+    {
+      title: "Welcome to Rustodia",
+      image: "logo.png",
+      caption: "Rustodia — Vanilla Solo/Duo server. New wipes every Friday. Join our Discord for updates."
+    },
+    {
+      title: "Upcoming Wipe",
+      image: "logo.png",
+      caption: "Weekly wipe on Friday @ 2PM UK / 3PM CEST. Prepare your base!"
+    }
+  ];
+
+  // Render news (only script can change)
+  function renderNews(){
+    const container = document.getElementById('news-list');
+    container.innerHTML = '';
+    NEWS_DATA.forEach(n => {
+      const item = document.createElement('div');
+      item.className = 'news-item';
+      item.innerHTML = `
+        <img src="${n.image}" alt="${n.title}">
+        <div>
+          <strong style="display:block;margin-bottom:6px">${n.title}</strong>
+          <div class="small">${n.caption}</div>
+        </div>
+      `;
+      container.appendChild(item);
+    });
   }
-];
 
-function renderNews(){
-  const container = document.getElementById('news-list');
-  NEWS_DATA.forEach(n => {
-    const item = document.createElement('div');
-    item.className = 'news-item';
-    item.innerHTML = `<img src="${n.image}" alt="${n.title}"><div><strong>${n.title}</strong><p class="small">${n.caption}</p></div>`;
-    container.appendChild(item);
+  // === MAP (single image managed via JS) ===
+  const CURRENT_MAP = "logo.png"; // set to e.g. "map1.jpg" when you add map image to folder
+
+  function renderMap(){
+    const img = document.getElementById('map-image');
+    if(img) img.src = CURRENT_MAP;
+  }
+
+  window.addEventListener('load', () => {
+    renderNews();
+    renderMap();
   });
-}
-
-// MAP CONFIGURATION
-const CURRENT_MAP = "logo.png"; // change this path to your current map image
-
-function renderMap(){
-  const mapImg = document.getElementById('map-image');
-  if(mapImg) mapImg.src = CURRENT_MAP;
-}
-
-window.addEventListener('load', ()=>{
-  renderNews();
-  renderMap();
-});
 </script>
 </body>
 </html>
