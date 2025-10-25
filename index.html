@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rustodia</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #ff6a00;
+  --dark: #000;
+  --panel: #0b0b0c;
+  --muted: #aaa;
+}
+html, body {
+  margin: 0; padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  background-color: var(--dark);
+  color: #fff;
+  scroll-behavior: smooth;
+}
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 30px;
+  border-bottom: 2px solid var(--orange);
+  z-index: 999;
+}
+header img { height: 48px; }
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+nav a:hover { color: var(--orange); }
+section {
+  padding: 100px 20px 60px;
+  max-width: 1000px;
+  margin: auto;
+}
+h1, h2 { color: var(--orange); }
+.card {
+  background: var(--panel);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.news-item {
+  display: flex; gap: 12px; margin-top: 15px;
+}
+.news-item img {
+  width: 150px; height: 90px; object-fit: cover; border-radius: 8px;
+}
+.small { color: var(--muted); font-size: 14px; }
+.map-img { width: 100%; border-radius: 12px; margin-top: 15px; }
+footer {
+  text-align: center;
+  padding: 30px 10px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: var(--muted);
+}
+a { color: var(--orange); }
+</style>
+</head>
+<body>
+<header>
+  <div><img src="logo.png" alt="Rustodia Logo"></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#info">Info</a>
+    <a href="#map">Map</a>
+    <a href="#contacts">Contacts</a>
+  </nav>
+</header>
+
+<section id="home">
+  <h1>Welcome to Rustodia</h1>
+  <div class="card">
+    <h2>Latest News</h2>
+    <div id="news-list"></div>
+  </div>
+</section>
+
+<section id="info">
+  <h2>Server Info</h2>
+  <div class="card small">
+    <p><strong>Wipe Schedule:</strong> Map weekly - Fridays @ 2PM UK / 3PM CEST, or when force updates occur. BPs - Monthly @ Force.</p>
+    <p><strong>VIP:</strong> Rustodia Store</p>
+    <p><strong>Rules:</strong> Max team size: 2. No hacking / scripting. No intentional bug abuse. No EAC / FP banned alts. No ban evading. No racism.</p>
+    <p>Top performance. Active administrators. Seeds are carefully selected.</p>
+  </div>
+</section>
+
+<section id="map">
+  <h2>Current Map</h2>
+  <div class="card" style="text-align:center;">
+    <img id="map-image" src="" alt="Current Map" class="map-img">
+  </div>
+</section>
+
+<section id="contacts">
+  <h2>Contacts</h2>
+  <div class="card small">
+    <p><strong>Email:</strong> <a href="mailto:rustodia@gmail.com">rustodia@gmail.com</a></p>
+    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/rustodia?igsh=dGR6bjdrbGt4NzZv&utm_source=qr" target="_blank">@rustodia</a></p>
+    <p><strong>Discord:</strong> <a href="https://discord.gg/k4EhgQMV8t" target="_blank">Join our Discord</a></p>
+  </div>
+</section>
+
+<footer>
+  © Rustodia 2025 — <a href="https://discord.gg/k4EhgQMV8t" target="_blank">Discord</a> • <a href="https://www.instagram.com/rustodia" target="_blank">Instagram</a> • <a href="mailto:rustodia@gmail.com">Email</a>
+</footer>
+
+<script>
+// NEWS SECTION DATA
+const NEWS_DATA = [
+  {
+    title: "Welcome to Rustodia",
+    image: "logo.png",
+    caption: "Rustodia — Vanilla Solo/Duo server. New wipes every Friday. Join our Discord for updates."
+  },
+  {
+    title: "Upcoming Wipe",
+    image: "logo.png",
+    caption: "Weekly wipe on Friday @ 2PM UK / 3PM CEST. Prepare your base!"
+  }
+];
+
+function renderNews(){
+  const container = document.getElementById('news-list');
+  NEWS_DATA.forEach(n => {
+    const item = document.createElement('div');
+    item.className = 'news-item';
+    item.innerHTML = `<img src="${n.image}" alt="${n.title}"><div><strong>${n.title}</strong><p class="small">${n.caption}</p></div>`;
+    container.appendChild(item);
+  });
+}
+
+// MAP CONFIGURATION
+const CURRENT_MAP = "logo.png"; // change this path to your current map image
+
+function renderMap(){
+  const mapImg = document.getElementById('map-image');
+  if(mapImg) mapImg.src = CURRENT_MAP;
+}
+
+window.addEventListener('load', ()=>{
+  renderNews();
+  renderMap();
+});
+</script>
+</body>
+</html>
